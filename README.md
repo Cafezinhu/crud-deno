@@ -1,1 +1,1 @@
-A simple CRUD made with Deno.
+A simple CRUD made with Deno... and dinosaurs.
