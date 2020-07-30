@@ -6,4 +6,8 @@ const app = new Application();
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-await app.listen({port: 8000});
+const port = 8000;
+
+console.log(`Listening on ${port}`);
+
+await app.listen({port: port});
