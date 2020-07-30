@@ -32,9 +32,9 @@ export class DinosaurController{
     }
 
     static async update({params, request, response}: {params:{name: string}, request: Request, response: Response}){
-        let dinosaur: Array<IDinosaur> = this._search(params.name, true);
+        let dinosaur: IDinosaur | undefined = this._search(params.name, true)[0];
 
-        if(dinosaur.length > 0){
+        if(dinosaur){
             for(let index in dinosaurs){
                 if(dinosaurs[index].name.toLowerCase() === params.name.toLowerCase()){
                     let newDinosaur: IDinosaur = await request.body().value;
