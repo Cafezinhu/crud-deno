@@ -1,7 +1,7 @@
 import { Response, Request } from 'https://deno.land/x/oak/mod.ts';
 import { getDinosaurs, IDinosaur } from '../models/dinosaur.ts';
 
-const dinosaurs = getDinosaurs();
+var dinosaurs = getDinosaurs();
 
 export class DinosaurController{
 
@@ -46,6 +46,18 @@ export class DinosaurController{
             ok(response, {message: `Dinosaur updated successfully.`});
         }else{
             notFound(response, "Dinosaur nor found");
+        }
+    }
+    
+    static delete({params, response}: {params:{name: string}, response: Response}){
+        let dinosaur: IDinosaur | undefined = this._search(params.name, true)[0];
+
+        if(dinosaur){
+            dinosaurs = dinosaurs.filter(dino => dino.name != params.name);
+
+            ok(response, {message: `${params.name} successfully deleted. Now it's extinct.`});
+        }else{
+            notFound(response, "Dinosaur not found.");
         }
     }
 }
