@@ -6,9 +6,9 @@ export interface IDinosaur{
     eatingHabit: EatingHabit;
 }
 
-export enum WalkingStyle{bipedal, quadrupedal};
+export enum WalkingStyle{bipedal = "bipedal", quadrupedal = "quadrupedal"};
 
-export enum EatingHabit{carnivorous, herbivorous, omnivorous};
+export enum EatingHabit{carnivorous = "carnivorous", herbivorous = "herbivorous", omnivorous = "omnivorous"};
 
 export function getDinosaurs(): Array<IDinosaur> {
     return [{
