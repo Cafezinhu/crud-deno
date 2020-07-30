@@ -5,8 +5,8 @@ const dinosaurs = getDinosaurs();
 
 export class DinosaurController{
 
-    private static _search(name: string): IDinosaur | undefined{
-        return dinosaurs.filter(dinosaur => dinosaur.name.toLowerCase().includes(name.toLowerCase()))[0];
+    private static _search(name: string): Array<IDinosaur> | undefined{
+        return dinosaurs.filter(dinosaur => dinosaur.name.toLowerCase().includes(name.toLowerCase()));
     }
 
     static getAll({response}: {response: Response}): void{
@@ -14,9 +14,9 @@ export class DinosaurController{
     }
 
     static get({params, response}: {params:{name: string}, response: Response}): void{
-        let dinosaur: IDinosaur | undefined = this._search(params.name);
-        if(dinosaur){
-            ok(response, dinosaur);
+        let dinosaurs: Array<IDinosaur> | undefined = this._search(params.name);
+        if(dinosaurs){
+            ok(response, dinosaurs);
         }else{
             notFound(response, "Dinosaur not found");
         }
