@@ -5,7 +5,7 @@ var dinosaurs = getDinosaurs();
 
 export class DinosaurController{
 
-    private static _search(name: string, exact: boolean = false): Array<IDinosaur>{
+    static search(name: string, exact: boolean = false): Array<IDinosaur>{
         if(exact)
             return dinosaurs.filter(dinosaur => dinosaur.name.toLowerCase() === name.toLowerCase());
         return dinosaurs.filter(dinosaur => dinosaur.name.toLowerCase().includes(name.toLowerCase()));
@@ -17,7 +17,7 @@ export class DinosaurController{
     }
 
     static get({params, response}: {params:{name: string}, response: Response}){
-        let dinosaurs: Array<IDinosaur> = this._search(params.name);
+        let dinosaurs: Array<IDinosaur> = DinosaurController.search(params.name);
         if(dinosaurs.length > 0){
             ok(response, dinosaurs);
         }else{
@@ -32,7 +32,7 @@ export class DinosaurController{
     }
 
     static async update({params, request, response}: {params:{name: string}, request: Request, response: Response}){
-        let dinosaur: IDinosaur | undefined = this._search(params.name, true)[0];
+        let dinosaur: IDinosaur | undefined = DinosaurController.search(params.name, true)[0];
 
         if(dinosaur){
             for(let index in dinosaurs){
@@ -50,7 +50,7 @@ export class DinosaurController{
     }
     
     static delete({params, response}: {params:{name: string}, response: Response}){
-        let dinosaur: IDinosaur | undefined = this._search(params.name, true)[0];
+        let dinosaur: IDinosaur | undefined = DinosaurController.search(params.name, true)[0];
 
         if(dinosaur){
             dinosaurs = dinosaurs.filter(dino => dino.name != params.name);
