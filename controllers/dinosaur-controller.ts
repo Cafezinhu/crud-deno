@@ -9,17 +9,23 @@ export class DinosaurController{
         return dinosaurs.filter(dinosaur => dinosaur.name.toLowerCase().includes(name.toLowerCase()));
     }
 
-    static getAll({response}: {response: Response}): void{
+    static getAll({response}: {response: Response}){
         ok(response, dinosaurs);
     }
 
-    static get({params, response}: {params:{name: string}, response: Response}): void{
+    static get({params, response}: {params:{name: string}, response: Response}){
         let dinosaurs: Array<IDinosaur> | undefined = this._search(params.name);
         if(dinosaurs){
             ok(response, dinosaurs);
         }else{
             notFound(response, "Dinosaur not found");
         }
+    }
+
+    static async create({request, response}: {request: Request, response: Response}){
+        let dinosaur: IDinosaur = await request.body().value;
+        dinosaurs.push(dinosaur);
+        ok(response, {message: `${dinosaur.name} creates successfully.`});
     }
 }
 

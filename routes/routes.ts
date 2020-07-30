@@ -5,6 +5,7 @@ import { DinosaurController } from '../controllers/dinosaur-controller.ts';
 const router = new Router();
 
 router.get("/api/v1/dinosaurs", DinosaurController.getAll)
-    .get("/api/v1/dinosaurs/:name", DinosaurController.get.bind(DinosaurController));
+    .get("/api/v1/dinosaurs/:name", DinosaurController.get.bind(DinosaurController))
+    .post("/api/v1/dinosaurs", DinosaurController.create);
 
 export default router;
