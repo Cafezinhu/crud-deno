@@ -5,9 +5,9 @@ import { DinosaurController } from '../controllers/dinosaur-controller.ts';
 const router = new Router();
 
 router.get("/api/v1/dinosaurs", DinosaurController.getAll)
-    .get("/api/v1/dinosaurs/:name", DinosaurController.get)
+    .get("/api/v1/dinosaurs/:id", DinosaurController.get)
     .post("/api/v1/dinosaurs", DinosaurController.create)
-    .put("/api/v1/dinosaurs/:name", DinosaurController.update)
-    .delete("/api/v1/dinosaurs/:name", DinosaurController.delete);
+    .put("/api/v1/dinosaurs/:id", DinosaurController.update)
+    .delete("/api/v1/dinosaurs/:id", DinosaurController.delete);
 
 export default router;
