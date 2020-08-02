@@ -1,1 +1,1 @@
-A simple CRUD made with Deno... and dinosaurs.
+A simple REST API made with Deno... and dinosaurs.
